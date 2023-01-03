@@ -25,12 +25,17 @@ const HomeScreen = ({navigation}) => {
 };
 
 const DetailsScreen = props => {
+  console.log(props);
   console.log(props.route.params, '&&&&');
   const {userName} = props.route.params;
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>Details Screen</Text>
       <Text>{userName}</Text>
+      <Button
+        title="To Home"
+        onPress={() => props.navigation.navigate('Home')}
+      />
     </View>
   );
 };
@@ -48,9 +53,22 @@ const App = () => {
         <Header text="Hello World!!" />
         <Generator add={onAddRandomNum} />
       </View> */}
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Navigator initialRouteName="Details">
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{title: 'Home Screen'}}
+        />
+        <Stack.Screen
+          name="Details"
+          component={DetailsScreen}
+          initialParams={{
+            userIdx: 150,
+            userName: 'cpk0709',
+            userLastName: 'Choi',
+          }}
+          options={{title: 'Details Screen'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
