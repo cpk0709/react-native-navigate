@@ -5,6 +5,7 @@ import Header from './src/Header';
 import Generator from './src/Generator';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Logo from './src/Logo';
 
 const HomeScreen = ({navigation}) => {
   return (
@@ -69,18 +70,6 @@ const DetailsScreen = props => {
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const logoTitle = () => {
-    return (
-      <Image
-        style={{width: 40, height: 40}}
-        source={require('./src/asset/pics/home.png')}
-      />
-    );
-  };
-  const onAddRandomNum = () => {
-    alert('add number!');
-  };
-
   return (
     <NavigationContainer>
       {/* <View style={styles.mainView}>
@@ -88,7 +77,7 @@ const App = () => {
         <Generator add={onAddRandomNum} />
       </View> */}
       <Stack.Navigator
-        initialRouteName="Details"
+        initialRouteName="Home"
         screenOptions={{
           headerStyle: {backgroundColor: 'skyblue'},
           headerTintColor: 'blue',
@@ -108,7 +97,7 @@ const App = () => {
             //   fontWeight: '900',
             //   color: 'purple',
             // },
-            headerTitle: () => logoTitle(),
+            headerTitle: () => <Logo />,
           }}
         />
         <Stack.Screen
