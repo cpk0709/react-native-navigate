@@ -22,7 +22,13 @@ const HomeScreen = ({navigation}) => {
       />
       <Button
         title="Change the title"
-        onPress={() => navigation.setOptions({title: 'Changed!!'})}
+        onPress={() =>
+          navigation.setOptions({
+            title: 'Changed!!',
+            headerStyle: {backgroundColor: 'pink'},
+            headerTintColor: 'red',
+          })
+        }
       />
     </View>
   );
@@ -32,6 +38,21 @@ const DetailsScreen = props => {
   console.log(props);
   console.log(props.route.params, '&&&&');
   const {userName} = props.route.params;
+
+  const handleHeaderStyle = () => {
+    props.navigation.setOptions({
+      title: 'Customizing',
+      headerStyle: {
+        backgroundColor: 'blue',
+      },
+      headerTintColor: 'yellow',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: 'green',
+      },
+    });
+  };
+
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>Details Screen</Text>
@@ -40,6 +61,7 @@ const DetailsScreen = props => {
         title="To Home"
         onPress={() => props.navigation.navigate('Home')}
       />
+      <Button title="change title" onPress={() => handleHeaderStyle()} />
     </View>
   );
 };
@@ -61,7 +83,15 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{title: 'Home Screen'}}
+          options={{
+            title: 'Home Screen',
+            headerStyle: {backgroundColor: 'skyblue'},
+            headerTintColor: 'blue',
+            headerTitleStyle: {
+              fontWeight: '900',
+              color: 'purple',
+            },
+          }}
         />
         <Stack.Screen
           name="Details"
@@ -71,7 +101,9 @@ const App = () => {
             userName: 'cpk0709',
             userLastName: 'Choi',
           }}
-          options={{title: 'Details Screen'}}
+          options={{
+            title: 'Details Screen',
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
