@@ -20,6 +20,10 @@ const HomeScreen = ({navigation}) => {
           });
         }}
       />
+      <Button
+        title="Change the title"
+        onPress={() => navigation.setOptions({title: 'Changed!!'})}
+      />
     </View>
   );
 };
