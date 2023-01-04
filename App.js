@@ -79,19 +79,28 @@ const App = () => {
         <Header text="Hello World!!" />
         <Generator add={onAddRandomNum} />
       </View> */}
-      <Stack.Navigator initialRouteName="Details">
+      <Stack.Navigator
+        initialRouteName="Details"
+        screenOptions={{
+          headerStyle: {backgroundColor: 'skyblue'},
+          headerTintColor: 'blue',
+          headerTitleStyle: {
+            fontWeight: '900',
+            color: 'purple',
+          },
+        }}>
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{
-            title: 'Home Screen',
-            headerStyle: {backgroundColor: 'skyblue'},
-            headerTintColor: 'blue',
-            headerTitleStyle: {
-              fontWeight: '900',
-              color: 'purple',
-            },
-          }}
+          // options={{
+          //   title: 'Home Screen',
+          //   headerStyle: {backgroundColor: 'skyblue'},
+          //   headerTintColor: 'blue',
+          //   headerTitleStyle: {
+          //     fontWeight: '900',
+          //     color: 'purple',
+          //   },
+          // }}
         />
         <Stack.Screen
           name="Details"
