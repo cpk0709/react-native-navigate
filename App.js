@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {StyleSheet, Text, View, Button} from 'react-native';
+import {StyleSheet, Text, View, Button, Image} from 'react-native';
 import Header from './src/Header';
 import Generator from './src/Generator';
 import {NavigationContainer} from '@react-navigation/native';
@@ -69,6 +69,14 @@ const DetailsScreen = props => {
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  const logoTitle = () => {
+    return (
+      <Image
+        style={{width: 40, height: 40}}
+        source={require('./src/asset/pics/home.png')}
+      />
+    );
+  };
   const onAddRandomNum = () => {
     alert('add number!');
   };
@@ -92,15 +100,16 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          // options={{
-          //   title: 'Home Screen',
-          //   headerStyle: {backgroundColor: 'skyblue'},
-          //   headerTintColor: 'blue',
-          //   headerTitleStyle: {
-          //     fontWeight: '900',
-          //     color: 'purple',
-          //   },
-          // }}
+          options={{
+            title: 'Home Screen',
+            // headerStyle: {backgroundColor: 'skyblue'},
+            // headerTintColor: 'blue',
+            // headerTitleStyle: {
+            //   fontWeight: '900',
+            //   color: 'purple',
+            // },
+            headerTitle: () => logoTitle(),
+          }}
         />
         <Stack.Screen
           name="Details"
