@@ -98,6 +98,9 @@ const App = () => {
             //   color: 'purple',
             // },
             headerTitle: () => <Logo />,
+            headerRight: () => (
+              <Button title="Info" onPress={() => alert('I am a Button!')} />
+            ),
           }}
         />
         <Stack.Screen
