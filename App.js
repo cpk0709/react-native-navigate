@@ -51,6 +51,13 @@ const DetailsScreen = props => {
         fontWeight: 'bold',
         color: 'green',
       },
+      headerRight: () => (
+        <Button
+          title="Info"
+          color={'red'}
+          onPress={() => props.navigation.navigate('Home')}
+        />
+      ),
     });
   };
 
@@ -82,7 +89,7 @@ const App = () => {
           headerStyle: {backgroundColor: 'skyblue'},
           headerTintColor: 'blue',
           headerTitleStyle: {
-            fontWeight: '900',
+            fontWeight: '700',
             color: 'purple',
           },
         }}>
@@ -99,7 +106,11 @@ const App = () => {
             // },
             headerTitle: () => <Logo />,
             headerRight: () => (
-              <Button title="Info" onPress={() => alert('I am a Button!')} />
+              <Button
+                title="Info"
+                color={'red'}
+                onPress={() => alert('I am a Button!')}
+              />
             ),
           }}
         />
