@@ -34,3 +34,23 @@ export const getCalendarColumns = now => {
 
   return filledColumns;
 };
+
+const dayTexts = ['일', '월', '화', '수', '목', '금', '토'];
+/**
+ * @param day 0 ~ 6
+ * @return 일 ~ 월
+ */
+export const getDayText = day => {
+  return dayTexts[day];
+};
+
+export const getDayColor = day => {
+  switch (day) {
+    case 0:
+      return '#e67639';
+    case 6:
+      return '#5872d1';
+    default:
+      return '#2b2b2b';
+  }
+};
