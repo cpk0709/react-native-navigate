@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import React from 'react';
 import {StyleSheet, Text, View, FlatList, SafeAreaView} from 'react-native';
 import {getCalendarColumns, getDayColor, getDayText} from './src/util';
+import Margin from './src/Margin';
 
 const columnSize = 35;
 
@@ -27,6 +28,7 @@ const App = () => {
     const currentDateText = dayjs(now).format('YYYY.MM.DD.');
     return (
       <View>
+        <Margin height={15} />
         <View
           style={{
             flexDirection: 'row',
@@ -37,6 +39,7 @@ const App = () => {
             {currentDateText}
           </Text>
         </View>
+        <Margin height={15} />
         <View style={{flexDirection: 'row'}}>
           {[0, 1, 2, 3, 4, 5, 6].map(day => {
             const dayText = getDayText(day);
