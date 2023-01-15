@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View, FlatList, SafeAreaView} from 'react-native';
 import {getCalendarColumns, getDayColor, getDayText} from './src/util';
 
-const columnSize = 30;
+const columnSize = 35;
 
 const Column = ({text, color, opacity}) => {
   return (
@@ -23,15 +23,30 @@ const App = () => {
   const now = dayjs();
   const columns = getCalendarColumns(now);
 
-  const ListHeaderComponent = () => (
-    <View style={{flexDirection: 'row'}}>
-      {[0, 1, 2, 3, 4, 5, 6].map(day => {
-        const dayText = getDayText(day);
-        const color = getDayColor(day);
-        return <Column text={dayText} color={color} opacity={1} />;
-      })}
-    </View>
-  );
+  const ListHeaderComponent = () => {
+    const currentDateText = dayjs(now).format('YYYY.MM.DD.');
+    return (
+      <View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text style={{fontSize: 20, color: '#404040'}}>
+            {currentDateText}
+          </Text>
+        </View>
+        <View style={{flexDirection: 'row'}}>
+          {[0, 1, 2, 3, 4, 5, 6].map(day => {
+            const dayText = getDayText(day);
+            const color = getDayColor(day);
+            return <Column text={dayText} color={color} opacity={1} />;
+          })}
+        </View>
+      </View>
+    );
+  };
 
   const renderItem = ({item: date}) => {
     const dateText = dayjs(date).get('date');
