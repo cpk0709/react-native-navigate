@@ -11,7 +11,7 @@ export const fillEmptyColumns = (columns, start, end) => {
 
   const endDay = dayjs(end).get('day');
 
-  for (let i; i <= 6 - endDay; i += 1) {
+  for (let i = 1; i <= 6 - endDay; i += 1) {
     const date = dayjs(end).add(i, 'day');
     filledColumns.push(date);
   }
