@@ -13,6 +13,7 @@ const App = () => {
     const dateText = dayjs(date).get('date');
     const day = dayjs(date).get('day');
     const color = day === 0 ? '#e67639' : day === 6 ? '#5872d1' : '#2b2b2b';
+    const isCurrentMonth = dayjs(date).isSame(now, 'month');
     return (
       <View
         style={{
@@ -21,7 +22,10 @@ const App = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Text style={([styles.day], {color})}>{dateText}</Text>
+        <Text
+          style={([styles.day], {color, opacity: isCurrentMonth ? 1 : 0.3})}>
+          {dateText}
+        </Text>
       </View>
     );
   };
