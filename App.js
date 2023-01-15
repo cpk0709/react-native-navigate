@@ -11,6 +11,8 @@ const App = () => {
 
   const renderItem = ({item: date}) => {
     const dateText = dayjs(date).get('date');
+    const day = dayjs(date).get('day');
+    const color = day === 0 ? '#e67639' : day === 6 ? '#5872d1' : '#2b2b2b';
     return (
       <View
         style={{
@@ -19,7 +21,7 @@ const App = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Text style={[styles.day]}>{dateText}</Text>
+        <Text style={([styles.day], {color})}>{dateText}</Text>
       </View>
     );
   };
