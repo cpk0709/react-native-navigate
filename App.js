@@ -1,8 +1,9 @@
 import dayjs from 'dayjs';
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
+  Button,
   View,
   FlatList,
   SafeAreaView,
@@ -10,20 +11,32 @@ import {
 } from 'react-native';
 import {getCalendarColumns, getDayColor, getDayText} from './src/util';
 import Margin from './src/Margin';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 const columnSize = 35;
 
-const Column = ({text, color, opacity}) => {
+const Column = ({
+  text,
+  color,
+  opacity,
+  disabled = false,
+  onPress,
+  isSelected,
+}) => {
   return (
-    <View
+    <TouchableOpacity
+      onPress={onPress}
+      disabled={disabled}
       style={{
         width: columnSize,
         height: columnSize,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: isSelected ? '#c2c2c2' : 'transparent',
+        borderRadius: columnSize / 2,
       }}>
       <Text style={[styles.day, {color, opacity}]}>{text}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -37,10 +50,28 @@ const ArrowButton = ({onPress, text}) => {
 
 const App = () => {
   const now = dayjs();
-  const columns = getCalendarColumns(now);
+
+  const [selectedDate, setSelectedDate] = useState(now);
+
+  const columns = getCalendarColumns(selectedDate);
+
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = date => {
+    console.warn('A date has been picked: ', date);
+    hideDatePicker();
+  };
 
   const ListHeaderComponent = () => {
-    const currentDateText = dayjs(now).format('YYYY.MM.DD.');
+    const currentDateText = dayjs(selectedDate).format('YYYY.MM.DD.');
     return (
       <View>
         <Margin height={15} />
@@ -63,6 +94,7 @@ const App = () => {
             const color = getDayColor(day);
             return (
               <Column
+                disabled
                 key={`day-${day}`}
                 text={dayText}
                 color={color}
@@ -79,12 +111,18 @@ const App = () => {
     const dateText = dayjs(date).get('date');
     const day = dayjs(date).get('day');
     const color = getDayColor(day);
-    const isCurrentMonth = dayjs(date).isSame(now, 'month');
+    const isCurrentMonth = dayjs(date).isSame(selectedDate, 'month');
+    const onPress = () => {
+      setSelectedDate(date);
+    };
+    const isSelected = dayjs(date).isSame(selectedDate, 'date');
     return (
       <Column
         text={dateText}
         color={color}
         opacity={isCurrentMonth ? 1 : 0.3}
+        onPress={onPress}
+        isSelected={isSelected}
       />
     );
   };
@@ -98,6 +136,15 @@ const App = () => {
         numColumns={7}
         ListHeaderComponent={ListHeaderComponent}
       />
+      <View>
+        <Button title="Show Date Picker" onPress={showDatePicker} />
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
+      </View>
     </SafeAreaView>
   );
 };
