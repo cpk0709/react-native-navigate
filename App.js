@@ -66,8 +66,18 @@ const App = () => {
   };
 
   const handleConfirm = date => {
-    console.warn('A date has been picked: ', date);
+    setSelectedDate(dayjs(date));
     hideDatePicker();
+  };
+
+  const onPressLeftButton = () => {
+    const newSelectedDate = dayjs(selectedDate).subtract(1, 'month');
+    setSelectedDate(newSelectedDate);
+  };
+
+  const onPressRightButton = () => {
+    const newSelectedDate = dayjs(selectedDate).add(1, 'month');
+    setSelectedDate(newSelectedDate);
   };
 
   const ListHeaderComponent = () => {
@@ -81,11 +91,13 @@ const App = () => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <ArrowButton text={'Prev'} />
-          <Text style={{fontSize: 20, color: '#404040'}}>
-            {currentDateText}
-          </Text>
-          <ArrowButton text={'Next'} />
+          <ArrowButton text={'Prev'} onPress={onPressLeftButton} />
+          <TouchableOpacity onPress={() => setDatePickerVisibility(true)}>
+            <Text style={{fontSize: 20, color: '#404040'}}>
+              {currentDateText}
+            </Text>
+          </TouchableOpacity>
+          <ArrowButton text={'Next'} onPress={onPressRightButton} />
         </View>
         <Margin height={15} />
         <View style={{flexDirection: 'row'}}>
@@ -137,7 +149,7 @@ const App = () => {
         ListHeaderComponent={ListHeaderComponent}
       />
       <View>
-        <Button title="Show Date Picker" onPress={showDatePicker} />
+        {/* <Button title="Show Date Picker" onPress={showDatePicker} /> */}
         <DateTimePickerModal
           isVisible={isDatePickerVisible}
           mode="date"
