@@ -12,6 +12,7 @@ import {
 import {getCalendarColumns, getDayColor, getDayText} from './src/util';
 import Margin from './src/Margin';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import {useCalendar} from './src/hook/useCalendar';
 
 const columnSize = 35;
 
@@ -51,34 +52,22 @@ const ArrowButton = ({onPress, text}) => {
 const App = () => {
   const now = dayjs();
 
-  const [selectedDate, setSelectedDate] = useState(now);
+  const {
+    selectedDate,
+    setSelectedDate,
+    isDatePickerVisible,
+    showDatePicker,
+    hideDatePicker,
+    handleConfirm,
+    subtract1Month,
+    add1Month,
+  } = useCalendar(now);
 
   const columns = getCalendarColumns(selectedDate);
 
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const onPressLeftButton = subtract1Month;
 
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
-
-  const handleConfirm = date => {
-    setSelectedDate(dayjs(date));
-    hideDatePicker();
-  };
-
-  const onPressLeftButton = () => {
-    const newSelectedDate = dayjs(selectedDate).subtract(1, 'month');
-    setSelectedDate(newSelectedDate);
-  };
-
-  const onPressRightButton = () => {
-    const newSelectedDate = dayjs(selectedDate).add(1, 'month');
-    setSelectedDate(newSelectedDate);
-  };
+  const onPressRightButton = add1Month;
 
   const ListHeaderComponent = () => {
     const currentDateText = dayjs(selectedDate).format('YYYY.MM.DD.');
@@ -92,7 +81,7 @@ const App = () => {
             alignItems: 'center',
           }}>
           <ArrowButton text={'Prev'} onPress={onPressLeftButton} />
-          <TouchableOpacity onPress={() => setDatePickerVisibility(true)}>
+          <TouchableOpacity onPress={() => showDatePicker()}>
             <Text style={{fontSize: 20, color: '#404040'}}>
               {currentDateText}
             </Text>
