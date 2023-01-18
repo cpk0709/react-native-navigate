@@ -147,6 +147,14 @@ const App = () => {
         ListHeaderComponent={ListHeaderComponent}
         style={{paddingTop: 50}}
       />
+
+      <FlatList
+        data={todoList}
+        renderItem={({item: todo}) => {
+          return <Text>{todo.content}</Text>;
+        }}
+      />
+
       <View>
         {/* <Button title="Show Date Picker" onPress={showDatePicker} /> */}
         <DateTimePickerModal
