@@ -1,17 +1,7 @@
 import dayjs from 'dayjs';
-import React, {useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  Button,
-  View,
-  FlatList,
-  SafeAreaView,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
-import {getCalendarColumns, getDayColor, getDayText} from './src/util';
-import Margin from './src/Margin';
+import React from 'react';
+import {StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import {getCalendarColumns} from './src/util';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {useCalendar} from './src/hook/useCalendar';
 import {useTodoList} from './src/hook/useTodoList';
