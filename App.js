@@ -8,6 +8,7 @@ import {
   FlatList,
   SafeAreaView,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import {getCalendarColumns, getDayColor, getDayText} from './src/util';
 import Margin from './src/Margin';
@@ -64,7 +65,8 @@ const App = () => {
     add1Month,
   } = useCalendar(now);
 
-  const {addTodo, removeTodo, toggleTodo, setInput} = useTodoList(selectedDate);
+  const {todoList, addTodo, removeTodo, toggleTodo, input, setInput} =
+    useTodoList(selectedDate);
 
   const columns = getCalendarColumns(selectedDate);
 
@@ -132,13 +134,18 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={[styles.container]}>
+    <View style={[styles.container]}>
+      <Image
+        source={require('./src/assets/background_01.jpeg')}
+        style={{width: '100%', height: '100%', position: 'absolute'}}
+      />
       <FlatList
         data={columns}
         keyExtractor={(_, index) => `column-${index}`}
         renderItem={renderItem}
         numColumns={7}
         ListHeaderComponent={ListHeaderComponent}
+        style={{paddingTop: 50}}
       />
       <View>
         {/* <Button title="Show Date Picker" onPress={showDatePicker} /> */}
@@ -149,7 +156,7 @@ const App = () => {
           onCancel={hideDatePicker}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
