@@ -27,16 +27,10 @@ const App = () => {
   const columns = getCalendarColumns(selectedDate);
 
   const onPressLeftButton = subtract1Month;
-
   const onPressRightButton = add1Month;
 
-  return (
-    <View style={[styles.container]}>
-      <Image
-        source={require('./src/assets/background_01.jpeg')}
-        style={{width: '100%', height: '100%', position: 'absolute'}}
-      />
-
+  const ListHeaderComponent = () => {
+    return (
       <Calendar
         columns={columns}
         selectedDate={selectedDate}
@@ -45,8 +39,19 @@ const App = () => {
         setSelectedDate={setSelectedDate}
         showDatePicker={showDatePicker}
       />
+    );
+  };
+
+  return (
+    <View style={[styles.container]}>
+      <Image
+        source={require('./src/assets/background_01.jpeg')}
+        style={{width: '100%', height: '100%', position: 'absolute'}}
+      />
+
       <FlatList
         data={todoList}
+        ListHeaderComponent={ListHeaderComponent}
         renderItem={({item: todo}) => {
           return <Text>{todo.content}</Text>;
         }}
