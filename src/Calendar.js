@@ -112,7 +112,6 @@ export default ({
       renderItem={renderItem}
       numColumns={7}
       ListHeaderComponent={ListHeaderComponent}
-      style={{paddingTop: 50}}
     />
   );
 };

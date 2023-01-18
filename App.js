@@ -42,6 +42,19 @@ const App = () => {
     );
   };
 
+  const renderItem = ({item: todo}) => {
+    return (
+      <View
+        style={{
+          width: 220,
+          backgroundColor: todo.id % 2 === 0 ? 'pink' : 'lightblue',
+          alignSelf: 'center',
+        }}>
+        <Text>{todo.content}</Text>
+      </View>
+    );
+  };
+
   return (
     <View style={[styles.container]}>
       <Image
@@ -52,9 +65,8 @@ const App = () => {
       <FlatList
         data={todoList}
         ListHeaderComponent={ListHeaderComponent}
-        renderItem={({item: todo}) => {
-          return <Text>{todo.content}</Text>;
-        }}
+        renderItem={renderItem}
+        style={{paddingTop: 50}}
       />
 
       <View>
