@@ -28,7 +28,7 @@ const initialTodoList = [
   },
   {
     id: 5,
-    content: '코딩테스트 공부하기',
+    content: '코딩테스트 준비',
     date: dayjs(),
     isSuccess: false,
   },
