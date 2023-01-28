@@ -43,6 +43,7 @@ const App = () => {
   };
 
   const renderItem = ({item: todo}) => {
+    const isSuccess = todo.isSuccess;
     return (
       <View
         style={{
@@ -53,8 +54,14 @@ const App = () => {
           paddingHorizontal: 5,
           borderBottomWidth: 0.2,
           borderColor: '#a6a6a6',
+          flexDirection: 'row',
         }}>
-        <Text>{todo.content}</Text>
+        <Text style={{fontSize: 14, color: '#595959', flex: 1}}>
+          {todo.content}
+        </Text>
+        <Text style={{color: isSuccess ? '#25e675' : '#faa69b'}}>
+          {isSuccess ? '완료' : '미완료'}
+        </Text>
       </View>
     );
   };
