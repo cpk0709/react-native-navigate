@@ -47,8 +47,12 @@ const App = () => {
       <View
         style={{
           width: 220,
-          backgroundColor: todo.id % 2 === 0 ? 'pink' : 'lightblue',
+          // backgroundColor: todo.id % 2 === 0 ? 'pink' : 'lightblue',
           alignSelf: 'center',
+          paddingVertical: 10,
+          paddingHorizontal: 5,
+          borderBottomWidth: 0.2,
+          borderColor: '#a6a6a6',
         }}>
         <Text>{todo.content}</Text>
       </View>
