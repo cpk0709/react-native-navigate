@@ -4,7 +4,6 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 export default ({
   value,
   onChangeText,
-  bottomeSpace,
   width,
   placeholder,
   onPress,
