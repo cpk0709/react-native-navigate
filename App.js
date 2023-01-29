@@ -6,6 +6,8 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {useCalendar} from './src/hook/useCalendar';
 import {useTodoList} from './src/hook/useTodoList';
 import Calendar from './src/Calendar';
+import Margin from './src/Margin';
+import AddTodoInput from './src/AddTodoInput';
 
 const App = () => {
   const now = dayjs();
@@ -31,14 +33,26 @@ const App = () => {
 
   const ListHeaderComponent = () => {
     return (
-      <Calendar
-        columns={columns}
-        selectedDate={selectedDate}
-        onPressLeftButton={onPressLeftButton}
-        onPressRightButton={onPressRightButton}
-        setSelectedDate={setSelectedDate}
-        showDatePicker={showDatePicker}
-      />
+      <View>
+        <Calendar
+          columns={columns}
+          selectedDate={selectedDate}
+          onPressLeftButton={onPressLeftButton}
+          onPressRightButton={onPressRightButton}
+          setSelectedDate={setSelectedDate}
+          showDatePicker={showDatePicker}
+        />
+        <Margin height={15} />
+        <View
+          style={{
+            width: 4,
+            height: 4,
+            borderRadius: 4 / 2,
+            backgroundColor: '#a3a3a3',
+            alignSelf: 'center',
+          }}></View>
+        <Margin height={15} />
+      </View>
     );
   };
 
@@ -79,6 +93,8 @@ const App = () => {
         renderItem={renderItem}
         style={{paddingTop: 50}}
       />
+
+      <AddTodoInput value={input} onChangeText={setInput} width={220} />
 
       <View>
         {/* <Button title="Show Date Picker" onPress={showDatePicker} /> */}
