@@ -46,7 +46,7 @@ const App = () => {
     toggleTodo,
     input,
     setInput,
-    resetTodo,
+    resetInput,
   } = useTodoList(selectedDate);
 
   const columns = getCalendarColumns(selectedDate);
@@ -56,12 +56,12 @@ const App = () => {
 
   const onPressAdd = () => {
     addTodo();
-    resetTodo();
+    resetInput();
   };
 
   const onSubmitEditing = () => {
     addTodo();
-    resetTodo();
+    resetInput();
   };
 
   const ListHeaderComponent = () => {

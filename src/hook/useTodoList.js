@@ -63,7 +63,7 @@ export const useTodoList = selectedDate => {
     setTodoList(newTodoList);
   };
 
-  const resetTodo = () => setInput('');
+  const resetInput = () => setInput('');
 
   const toggleTodo = todoId => {
     const newTodoList = todoList.map(todo => {
@@ -82,6 +82,6 @@ export const useTodoList = selectedDate => {
     toggleTodo,
     input,
     setInput,
-    resetTodo,
+    resetInput,
   };
 };
