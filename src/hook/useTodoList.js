@@ -5,7 +5,7 @@ import {Alert} from 'react-native';
 const initialTodoList = [
   {
     id: 1,
-    content: '운동하기',
+    content: '운동하기!!',
     date: dayjs(),
     isSuccess: true,
   },
