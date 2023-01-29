@@ -40,7 +40,7 @@ const App = () => {
   } = useCalendar(now);
 
   const {
-    todoList,
+    filteredTodoList,
     addTodo,
     removeTodo,
     toggleTodo,
@@ -143,7 +143,7 @@ const App = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <>
           <FlatList
-            data={todoList}
+            data={filteredTodoList}
             ListHeaderComponent={ListHeaderComponent}
             renderItem={renderItem}
             style={{paddingTop: statusBarHeight + 30}}

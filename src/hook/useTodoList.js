@@ -75,8 +75,14 @@ export const useTodoList = selectedDate => {
     });
     setTodoList(newTodoList);
   };
+
+  const filteredTodoList = todoList.filter(todo => {
+    const isSameDate = dayjs(todo.date).isSame(selectedDate, 'date');
+    return isSameDate;
+  });
+
   return {
-    todoList,
+    filteredTodoList,
     addTodo,
     removeTodo,
     toggleTodo,
