@@ -142,6 +142,8 @@ const App = () => {
             ListHeaderComponent={ListHeaderComponent}
             renderItem={renderItem}
             style={{paddingTop: statusBarHeight + 30}}
+            contentContainerStyle={{paddingBottom: bottomeSpace + 30}}
+            showsVerticalScrollIndicator={false}
             ref={flatListRef}
           />
 
