@@ -27,7 +27,7 @@ import AddTodoInput from './src/AddTodoInput';
 
 const App = () => {
   const now = dayjs();
-
+  const flatListRef = React.useRef();
   const {
     selectedDate,
     setSelectedDate,
@@ -62,6 +62,12 @@ const App = () => {
   const onSubmitEditing = () => {
     addTodo();
     resetInput();
+  };
+
+  const onFocus = () => {
+    setTimeout(() => {
+      flatListRef.current?.scrollToEnd();
+    }, 100);
   };
 
   const ListHeaderComponent = () => {
@@ -136,6 +142,7 @@ const App = () => {
             ListHeaderComponent={ListHeaderComponent}
             renderItem={renderItem}
             style={{paddingTop: statusBarHeight + 30}}
+            ref={flatListRef}
           />
 
           <AddTodoInput
@@ -146,6 +153,7 @@ const App = () => {
             placeholder={`${dayjs(selectedDate).format('MM.DD')}에 추가할 TODO`}
             onPress={onPressAdd}
             onSubmitEditing={onSubmitEditing}
+            onFocus={onFocus}
           />
         </>
       </KeyboardAvoidingView>
