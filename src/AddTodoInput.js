@@ -1,14 +1,26 @@
 import React from 'react';
-import {View, TextInput} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
-export default ({value, onChangeText, width}) => {
+export default ({
+  value,
+  onChangeText,
+  bottomeSpace,
+  width,
+  placeholder,
+  onPress,
+}) => {
   return (
-    <View style={{paddingBottom: 50}}>
+    <View style={{paddingBottom: bottomeSpace, flexDirection: 'row', width}}>
       <TextInput
         value={value}
         onChangeText={onChangeText}
-        style={{backgroundColor: 'yellow', width}}
+        placeholder={placeholder}
+        placeholderTextColor={'#999'}
+        style={{backgroundColor: 'yellow', flex: 1}}
       />
+      <TouchableOpacity onPress={onPress}>
+        <Text style={{color: '#595959', paddingHorizontal: 10}}>추가</Text>
+      </TouchableOpacity>
     </View>
   );
 };

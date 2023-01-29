@@ -1,7 +1,12 @@
 import dayjs from 'dayjs';
 import React from 'react';
 import {StyleSheet, Text, View, FlatList, Image} from 'react-native';
-import {getCalendarColumns} from './src/util';
+import {
+  getCalendarColumns,
+  statusBarHeight,
+  bottomeSpace,
+  ITEM_WIDTH,
+} from './src/util';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {useCalendar} from './src/hook/useCalendar';
 import {useTodoList} from './src/hook/useTodoList';
@@ -91,10 +96,20 @@ const App = () => {
         data={todoList}
         ListHeaderComponent={ListHeaderComponent}
         renderItem={renderItem}
-        style={{paddingTop: 50}}
+        style={{paddingTop: statusBarHeight}}
       />
 
-      <AddTodoInput value={input} onChangeText={setInput} width={220} />
+      <AddTodoInput
+        value={input}
+        onChangeText={setInput}
+        width={ITEM_WIDTH}
+        bottomeSpace={bottomeSpace}
+        placeholder={`${dayjs(selectedDate).format('MM.DD')}에 추가할 TODO`}
+        onPress={() => {
+          addTodo();
+          setInput('');
+        }}
+      />
 
       <View>
         {/* <Button title="Show Date Picker" onPress={showDatePicker} /> */}
