@@ -1,5 +1,9 @@
 import dayjs from 'dayjs';
 
+export const statusBarHeight = 50;
+export const bottomeSpace = 50;
+export const ITEM_WIDTH = 220;
+
 export const fillEmptyColumns = (columns, start, end) => {
   const filledColumns = columns.slice(0);
 
