@@ -11,6 +11,7 @@ import {
   Pressable,
   Keyboard,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {
   getCalendarColumns,
@@ -75,9 +76,16 @@ const App = () => {
   const renderItem = ({item: todo}) => {
     const isSuccess = todo.isSuccess;
     const onPress = () => toggleTodo(todo.id);
+    const onLongPress = () => {
+      Alert.alert('삭제하시겠어요?', '', [
+        {style: 'cancel', text: '아니요'},
+        {text: '네', onPress: () => removeTodo(todo.id)},
+      ]);
+    };
     return (
       <Pressable
         onPress={onPress}
+        onLongPress={onLongPress}
         style={{
           width: ITEM_WIDTH,
           // backgroundColor: todo.id % 2 === 0 ? 'pink' : 'lightblue',
