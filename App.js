@@ -54,26 +54,25 @@ const App = () => {
   const onPressLeftButton = subtract1Month;
   const onPressRightButton = add1Month;
 
+  const scrollToEnd = () => {
+    setTimeout(() => {
+      flatListRef.current?.scrollToEnd();
+    }, 200);
+  };
   const onPressAdd = () => {
     addTodo();
     resetInput();
-    setTimeout(() => {
-      flatListRef.current?.scrollToEnd();
-    }, 100);
+    scrollToEnd();
   };
 
   const onSubmitEditing = () => {
     addTodo();
     resetInput();
-    setTimeout(() => {
-      flatListRef.current?.scrollToEnd();
-    }, 100);
+    scrollToEnd();
   };
 
   const onFocus = () => {
-    setTimeout(() => {
-      flatListRef.current?.scrollToEnd();
-    }, 100);
+    scrollToEnd();
   };
 
   const ListHeaderComponent = () => {
