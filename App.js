@@ -10,6 +10,7 @@ import {
   Platform,
   Pressable,
   Keyboard,
+  TouchableOpacity,
 } from 'react-native';
 import {
   getCalendarColumns,
@@ -73,10 +74,12 @@ const App = () => {
 
   const renderItem = ({item: todo}) => {
     const isSuccess = todo.isSuccess;
+    const onPress = () => toggleTodo(todo.id);
     return (
-      <View
+      <Pressable
+        onPress={onPress}
         style={{
-          width: 220,
+          width: ITEM_WIDTH,
           // backgroundColor: todo.id % 2 === 0 ? 'pink' : 'lightblue',
           alignSelf: 'center',
           paddingVertical: 10,
@@ -91,7 +94,7 @@ const App = () => {
         <Text style={{color: isSuccess ? '#25e675' : '#faa69b'}}>
           {isSuccess ? '완료' : '미완료'}
         </Text>
-      </View>
+      </Pressable>
     );
   };
 
@@ -108,7 +111,7 @@ const App = () => {
             data={todoList}
             ListHeaderComponent={ListHeaderComponent}
             renderItem={renderItem}
-            style={{paddingTop: statusBarHeight}}
+            style={{paddingTop: statusBarHeight + 30}}
           />
 
           <AddTodoInput
