@@ -57,11 +57,17 @@ const App = () => {
   const onPressAdd = () => {
     addTodo();
     resetInput();
+    setTimeout(() => {
+      flatListRef.current?.scrollToEnd();
+    }, 100);
   };
 
   const onSubmitEditing = () => {
     addTodo();
     resetInput();
+    setTimeout(() => {
+      flatListRef.current?.scrollToEnd();
+    }, 100);
   };
 
   const onFocus = () => {
