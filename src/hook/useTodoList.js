@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import dayjs from 'dayjs';
+import {Alert} from 'react-native';
 
 const initialTodoList = [
   {
@@ -39,6 +40,10 @@ export const useTodoList = selectedDate => {
   const [input, setInput] = useState('');
 
   const addTodo = () => {
+    if (!input) {
+      Alert.alert('TODO를 입력해주세요!');
+      return;
+    }
     const len = todoList.length;
     const lastId = len === 0 ? 0 : todoList[len - 1].id;
     const newTodoList = [
