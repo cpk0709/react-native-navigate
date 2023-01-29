@@ -8,6 +8,7 @@ export default ({
   width,
   placeholder,
   onPress,
+  onSubmitEditing,
 }) => {
   return (
     <View
@@ -23,6 +24,7 @@ export default ({
         placeholder={placeholder}
         placeholderTextColor={'#999'}
         style={{padding: 5, flex: 1, color: '#595959'}}
+        onSubmitEditing={onSubmitEditing}
       />
       <TouchableOpacity onPress={onPress} style={{padding: 5}}>
         <Text style={{color: '#595959'}}>추가</Text>

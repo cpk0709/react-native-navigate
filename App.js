@@ -48,6 +48,16 @@ const App = () => {
   const onPressLeftButton = subtract1Month;
   const onPressRightButton = add1Month;
 
+  const onPressAdd = () => {
+    addTodo();
+    setInput('');
+  };
+
+  const onSubmitEditing = () => {
+    addTodo();
+    setInput('');
+  };
+
   const ListHeaderComponent = () => {
     return (
       <View>
@@ -128,10 +138,8 @@ const App = () => {
             width={ITEM_WIDTH}
             bottomeSpace={bottomeSpace}
             placeholder={`${dayjs(selectedDate).format('MM.DD')}에 추가할 TODO`}
-            onPress={() => {
-              addTodo();
-              setInput('');
-            }}
+            onPress={onPressAdd}
+            onSubmitEditing={onSubmitEditing}
           />
         </>
       </KeyboardAvoidingView>
