@@ -8,6 +8,8 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
+  Keyboard,
 } from 'react-native';
 import {
   getCalendarColumns,
@@ -94,7 +96,7 @@ const App = () => {
   };
 
   return (
-    <View style={[styles.container]}>
+    <Pressable style={[styles.container]} onPress={Keyboard.dismiss}>
       <Image
         source={require('./src/assets/background_01.jpeg')}
         style={{width: '100%', height: '100%', position: 'absolute'}}
@@ -134,7 +136,7 @@ const App = () => {
           onCancel={hideDatePicker}
         />
       </View>
-    </View>
+    </Pressable>
   );
 };
 
