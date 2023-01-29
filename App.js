@@ -40,6 +40,7 @@ const App = () => {
   } = useCalendar(now);
 
   const {
+    todoList,
     filteredTodoList,
     addTodo,
     removeTodo,
@@ -85,6 +86,7 @@ const App = () => {
           onPressRightButton={onPressRightButton}
           setSelectedDate={setSelectedDate}
           showDatePicker={showDatePicker}
+          todoList={todoList}
         />
         <Margin height={15} />
         <View

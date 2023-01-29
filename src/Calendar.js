@@ -13,6 +13,7 @@ const Column = ({
   disabled = false,
   onPress,
   isSelected,
+  hasTodo,
 }) => {
   return (
     <TouchableOpacity
@@ -26,7 +27,13 @@ const Column = ({
         backgroundColor: isSelected ? '#c2c2c2' : 'transparent',
         borderRadius: columnSize / 2,
       }}>
-      <Text style={[styles.day, {color, opacity}]}>{text}</Text>
+      <Text
+        style={[
+          styles.day,
+          {color, opacity, fontWeight: hasTodo ? 'bold' : 'normal'},
+        ]}>
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -45,6 +52,7 @@ export default ({
   onPressRightButton,
   setSelectedDate,
   showDatePicker,
+  todoList,
 }) => {
   const ListHeaderComponent = () => {
     const currentDateText = dayjs(selectedDate).format('YYYY.MM.DD.');
@@ -94,6 +102,9 @@ export default ({
       setSelectedDate(date);
     };
     const isSelected = dayjs(date).isSame(selectedDate, 'date');
+    const hasTodo = todoList.find(todo =>
+      dayjs(date).isSame(todo.date, 'date'),
+    );
     return (
       <Column
         text={dateText}
@@ -101,6 +112,7 @@ export default ({
         opacity={isCurrentMonth ? 1 : 0.3}
         onPress={onPress}
         isSelected={isSelected}
+        hasTodo={hasTodo}
       />
     );
   };
