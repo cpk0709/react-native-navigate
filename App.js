@@ -10,7 +10,6 @@ import {
   Platform,
   Pressable,
   Keyboard,
-  TouchableOpacity,
   Alert,
 } from 'react-native';
 import {
@@ -40,8 +39,15 @@ const App = () => {
     add1Month,
   } = useCalendar(now);
 
-  const {todoList, addTodo, removeTodo, toggleTodo, input, setInput} =
-    useTodoList(selectedDate);
+  const {
+    todoList,
+    addTodo,
+    removeTodo,
+    toggleTodo,
+    input,
+    setInput,
+    resetTodo,
+  } = useTodoList(selectedDate);
 
   const columns = getCalendarColumns(selectedDate);
 
@@ -50,12 +56,12 @@ const App = () => {
 
   const onPressAdd = () => {
     addTodo();
-    setInput('');
+    resetTodo();
   };
 
   const onSubmitEditing = () => {
     addTodo();
-    setInput('');
+    resetTodo();
   };
 
   const ListHeaderComponent = () => {
