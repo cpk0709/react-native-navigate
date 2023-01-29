@@ -12,9 +12,9 @@ export default ({
   return (
     <View
       style={{
-        paddingBottom: bottomeSpace,
         flexDirection: 'row',
         alignItems: 'center',
+        alignSelf: 'center',
         width,
       }}>
       <TextInput
@@ -22,10 +22,10 @@ export default ({
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={'#999'}
-        style={{padding: 5, flex: 1}}
+        style={{padding: 5, flex: 1, color: '#595959'}}
       />
-      <TouchableOpacity onPress={onPress}>
-        <Text style={{color: '#595959', padding: 5}}>추가</Text>
+      <TouchableOpacity onPress={onPress} style={{padding: 5}}>
+        <Text style={{color: '#595959'}}>추가</Text>
       </TouchableOpacity>
     </View>
   );

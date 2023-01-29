@@ -1,6 +1,14 @@
 import dayjs from 'dayjs';
 import React from 'react';
-import {StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import {
   getCalendarColumns,
   statusBarHeight,
@@ -91,25 +99,31 @@ const App = () => {
         source={require('./src/assets/background_01.jpeg')}
         style={{width: '100%', height: '100%', position: 'absolute'}}
       />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <>
+          <FlatList
+            data={todoList}
+            ListHeaderComponent={ListHeaderComponent}
+            renderItem={renderItem}
+            style={{paddingTop: statusBarHeight}}
+          />
 
-      <FlatList
-        data={todoList}
-        ListHeaderComponent={ListHeaderComponent}
-        renderItem={renderItem}
-        style={{paddingTop: statusBarHeight}}
-      />
+          <AddTodoInput
+            value={input}
+            onChangeText={setInput}
+            width={ITEM_WIDTH}
+            bottomeSpace={bottomeSpace}
+            placeholder={`${dayjs(selectedDate).format('MM.DD')}에 추가할 TODO`}
+            onPress={() => {
+              addTodo();
+              setInput('');
+            }}
+          />
+        </>
+      </KeyboardAvoidingView>
 
-      <AddTodoInput
-        value={input}
-        onChangeText={setInput}
-        width={ITEM_WIDTH}
-        bottomeSpace={bottomeSpace}
-        placeholder={`${dayjs(selectedDate).format('MM.DD')}에 추가할 TODO`}
-        onPress={() => {
-          addTodo();
-          setInput('');
-        }}
-      />
+      <Margin height={bottomeSpace} />
 
       <View>
         {/* <Button title="Show Date Picker" onPress={showDatePicker} /> */}
